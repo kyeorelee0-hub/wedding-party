@@ -32,22 +32,19 @@
 
     html, body {
       height: 100%;
+      overflow: hidden;
     }
 
     body {
       font-family: 'Noto Serif KR', serif;
       color: var(--white);
       background: #1a120a;
-      min-height: 100vh;
     }
 
     .bg-fixed {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      z-index: -2;
+      position: fixed;
+      inset: 0;
+      z-index: 0;
       background: url('photo.jpg') center / cover no-repeat;
     }
 
@@ -59,9 +56,16 @@
       background: rgba(10, 6, 3, 0.30);
     }
 
+    .scroll-wrap {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+
     .page {
       position: relative;
-      z-index: 1;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -429,6 +433,7 @@
 </head>
 <body>
   <div class="bg-fixed"></div>
+  <div class="scroll-wrap">
   <div class="page">
 
     <!-- Personalized greeting -->
@@ -555,16 +560,9 @@
     </div>
 
   </div>
+  </div>
 
   <script>
-    // 배경 고정 (iOS position:fixed 버그 우회)
-    const bgEl = document.querySelector('.bg-fixed');
-    function moveBg() {
-      bgEl.style.transform = `translateY(${window.scrollY}px)`;
-    }
-    window.addEventListener('scroll', moveBg, { passive: true });
-    moveBg();
-
     // 개인화 이름 (URL ?to=이름)
     const params = new URLSearchParams(location.search);
     const to = params.get('to');
