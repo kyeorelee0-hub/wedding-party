@@ -502,6 +502,27 @@
           </div>
 
           <div class="field">
+            <label class="field-label">나는</label>
+            <div class="att-grid">
+              <div class="att-opt">
+                <input type="radio" name="side" id="side-gyeore" value="겨레 친구" required>
+                <label class="att-label" for="side-gyeore">
+                  <span class="att-icon">🙋</span>
+                  <span class="att-text">겨레 친구</span>
+                </label>
+              </div>
+              <div class="att-opt">
+                <input type="radio" name="side" id="side-insang" value="인상 친구">
+                <label class="att-label" for="side-insang">
+                  <span class="att-icon">🙋</span>
+                  <span class="att-text">인상 친구</span>
+                </label>
+              </div>
+            </div>
+            <style>.field:has(#side-gyeore) .att-grid { grid-template-columns: repeat(2, 1fr); }</style>
+          </div>
+
+          <div class="field">
             <label class="field-label">참석 여부</label>
             <div class="att-grid">
               <div class="att-opt">
