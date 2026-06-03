@@ -46,6 +46,8 @@
       inset: 0;
       z-index: -2;
       background: url('photo.jpg') center / cover no-repeat;
+      transform: translateZ(0);
+      will-change: transform;
     }
 
     /* subtle dark overlay for text readability */
@@ -223,7 +225,6 @@
       max-width: 420px;
       border-radius: 1px;
       border: 1px solid rgba(255,255,255,0.12);
-      overflow: hidden;
     }
 
     .rsvp-inner {
