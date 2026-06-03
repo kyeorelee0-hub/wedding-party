@@ -37,7 +37,7 @@
     body {
       font-family: 'Noto Serif KR', serif;
       color: var(--white);
-      background: #1a120a url('photo.jpg') center / cover no-repeat fixed;
+      background: #1a120a url('photo.jpg') center top / cover no-repeat;
       min-height: 100vh;
     }
 
@@ -421,6 +421,11 @@
 
     /* ── Mobile ── */
     @media (max-width: 480px) {
+      body {
+        background-size: auto 55vw;
+        background-position: center top;
+        background-repeat: no-repeat;
+      }
       .page { padding: 56px 20px 64px; }
       .names { font-size: 28px; letter-spacing: 6px; }
       .rsvp-inner { padding: 36px 28px 44px; }
