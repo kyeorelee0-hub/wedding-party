@@ -296,6 +296,10 @@
       gap: 8px;
     }
 
+    .att-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     .att-opt { position: relative; }
 
     .att-opt input[type="radio"] {
@@ -503,7 +507,7 @@
 
           <div class="field">
             <label class="field-label">나는</label>
-            <div class="att-grid">
+            <div class="att-grid att-grid-2">
               <div class="att-opt">
                 <input type="radio" name="side" id="side-gyeore" value="겨레 친구" required>
                 <label class="att-label" for="side-gyeore">
@@ -519,7 +523,6 @@
                 </label>
               </div>
             </div>
-            <style>.field:has(#side-gyeore) .att-grid { grid-template-columns: repeat(2, 1fr); }</style>
           </div>
 
           <div class="field">
