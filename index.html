@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>청첩파티 초대장 — 유인상 ♥ 이겨레</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white: #ffffff;
+      --white-80: rgba(255,255,255,0.82);
+      --white-55: rgba(255,255,255,0.55);
+      --white-35: rgba(255,255,255,0.35);
+      --gold: rgba(220, 185, 140, 0.9);
+      --surface: #faf8f4;
+      --text: #2a211a;
+      --text-sub: #7a6a60;
+      --accent: #b89b7a;
+      --accent-light: #ede5d8;
+      --border: #e2d9ce;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Noto Serif KR', serif;
+      color: var(--white);
+      background: #1a120a url('photo.jpg') center / cover no-repeat fixed;
+      min-height: 100vh;
+    }
+
+    /* dark gradient overlay over the entire page */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(10, 6, 3, 0.52) 0%,
+          rgba(10, 6, 3, 0.38) 40%,
+          rgba(10, 6, 3, 0.60) 100%
+        );
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 72px 24px 80px;
+    }
+
+    /* ── Personalized To ── */
+    .to-section {
+      display: none;
+      margin-bottom: 20px;
+    }
+    .to-section.visible { display: block; }
+    .to-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      letter-spacing: 1.5px;
+      color: var(--white-55);
+    }
+    .to-name { color: var(--white-80); }
+
+    /* ── Hero Text ── */
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--white-55);
+      margin-bottom: 24px;
+    }
+
+    .names {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 8px;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .heart-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .invite-text {
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: var(--white-80);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .invite-sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--white-55);
+      line-height: 2;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto 44px;
+    }
+    .div-line { flex: 1; height: 1px; background: var(--white-35); }
+    .div-diamond {
+      width: 5px; height: 5px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ── Info Block ── */
+    .info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 380px;
+      margin-bottom: 56px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .info-icon {
+      font-size: 15px;
+      opacity: 0.7;
+      margin-top: 2px;
+      flex-shrink: 0;
+      width: 20px;
+      text-align: center;
+    }
+
+    .info-content {}
+
+    .info-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white-55);
+      margin-bottom: 3px;
+    }
+
+    .info-value {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--white-80);
+      line-height: 1.6;
+      letter-spacing: 0.5px;
+    }
+
+    .info-sub {
+      font-size: 12px;
+      color: var(--white-55);
+    }
+
+    .map-link {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(220,185,140,0.3);
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
+    }
+    .map-link:hover { border-color: var(--gold); }
+
+    /* ── RSVP Card ── */
+    .rsvp-card {
+      background: rgba(10, 5, 2, 0.22);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      width: 100%;
+      max-width: 420px;
+      border-radius: 1px;
+      border: 1px solid rgba(255,255,255,0.12);
+      overflow: hidden;
+    }
+
+    .rsvp-inner {
+      padding: 44px 40px 52px;
+    }
+
+    .rsvp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .rsvp-desc {
+      font-size: 12px;
+      color: var(--white-55);
+      text-align: center;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .field { margin-bottom: 16px; }
+
+    .field-label {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--white-55);
+      margin-bottom: 8px;
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 1px;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 14px;
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .field-input::placeholder { color: rgba(255,255,255,0.28); }
+    .field-input:focus { border-color: var(--gold); }
+
+    textarea.field-input {
+      resize: vertical;
+      min-height: 76px;
+      line-height: 1.6;
+    }
+
+    .att-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .att-opt { position: relative; }
+
+    .att-opt input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .att-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 8px 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 1px;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: rgba(255,255,255,0.06);
+      user-select: none;
+    }
+    .att-label:hover { border-color: var(--gold); }
+
+    .att-icon { font-size: 22px; margin-bottom: 6px; line-height: 1; }
+    .att-text { font-size: 13px; color: var(--white-55); letter-spacing: 1px; }
+
+    .att-opt input:checked + .att-label {
+      border-color: var(--gold);
+      background: rgba(220,185,140,0.15);
+    }
+    .att-opt input:checked + .att-label .att-text {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      margin-top: 28px;
+      background: rgba(255,255,255,0.90);
+      color: #2a211a;
+      border: none;
+      border-radius: 1px;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: var(--white); }
+
+    /* ── Kakao ── */
+    .kakao-section {
+      margin-top: 28px;
+      padding-top: 28px;
+    }
+
+    .kakao-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .kdiv-line { flex: 1; height: 1px; background: rgba(255,255,255,0.15); }
+
+    .kdiv-text {
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--white-55);
+      white-space: nowrap;
+    }
+
+    .kakao-desc {
+      font-size: 11px;
+      color: var(--white-55);
+      text-align: center;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      letter-spacing: 0.3px;
+    }
+
+    .kakao-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 20px;
+      background: rgba(255,255,255,0.90);
+      color: #2a211a;
+      border-radius: 1px;
+      text-decoration: none;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: background 0.15s;
+    }
+
+    .kakao-btn:hover { background: #ffffff; }
+
+    .kakao-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 32px;
+      text-align: center;
+    }
+    .footer p {
+      font-size: 11px;
+      color: var(--white-55);
+      letter-spacing: 1.5px;
+      line-height: 2;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 480px) {
+      .page { padding: 56px 20px 64px; }
+      .names { font-size: 28px; letter-spacing: 6px; }
+      .rsvp-inner { padding: 36px 28px 44px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Personalized greeting -->
+    <div class="to-section" id="toSection">
+      <p class="to-text">To. <span class="to-name" id="toName"></span>님</p>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <p class="label">Wedding Party</p>
+      <p class="names">유인상 · 이겨레</p>
+      <p class="heart-line">♥</p>
+      <p class="invite-text">두 사람의 웨딩파티에 초대합니다.</p>
+      <p class="invite-sub">가벼운 마음으로 오셔서 간단히 먹고 마시며 근황 이야기 나눠요 :)<br>잠깐 들러서 얼굴만 보고 가도 좋아요</p>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider">
+      <div class="div-line"></div>
+      <div class="div-diamond"></div>
+      <div class="div-line"></div>
+    </div>
+
+    <!-- Info -->
+    <div class="info-block">
+      <div class="info-row">
+        <span class="info-icon">📅</span>
+        <div class="info-content">
+          <p class="info-label">Date &amp; Time</p>
+          <p class="info-value">2026년 7월 10일 금요일 · 오후 6시</p>
+        </div>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <div class="info-content">
+          <p class="info-label">Place</p>
+          <p class="info-value">샹볼뮈지니</p>
+          <p class="info-sub">서울 강남구 역삼</p>
+          <a class="map-link" href="https://map.naver.com/v5/search/샹볼뮈지니 역삼" target="_blank" rel="noopener">지도 보기 →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RSVP Card -->
+    <div class="rsvp-card">
+      <div class="rsvp-inner">
+        <p class="rsvp-desc">참석 여부를 알려주세요<br>회신 기한 · 2026년 6월 15일</p>
+
+        <form name="rsvp" method="POST" action="thanks.html">
+
+          <div class="field">
+            <label class="field-label" for="name">이름</label>
+            <input class="field-input" type="text" id="name" name="name" placeholder="홍길동" required>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="phone">연락처</label>
+            <input class="field-input" type="tel" id="phone" name="phone" placeholder="010-0000-0000" required>
+          </div>
+
+          <div class="field">
+            <label class="field-label">참석 여부</label>
+            <div class="att-grid">
+              <div class="att-opt">
+                <input type="radio" name="attendance" id="attend" value="참석" required>
+                <label class="att-label" for="attend">
+                  <span class="att-icon">🥂</span>
+                  <span class="att-text">참석</span>
+                </label>
+              </div>
+              <div class="att-opt">
+                <input type="radio" name="attendance" id="absent" value="불참">
+                <label class="att-label" for="absent">
+                  <span class="att-icon">😢</span>
+                  <span class="att-text">불참</span>
+                </label>
+              </div>
+              <div class="att-opt">
+                <input type="radio" name="attendance" id="undecided" value="미정">
+                <label class="att-label" for="undecided">
+                  <span class="att-icon">🤔</span>
+                  <span class="att-text">미정</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="note">기타 참고사항</label>
+            <textarea class="field-input" id="note" name="note" placeholder="참석 예정 시간, 동행자 여부 등 호스트가 알면 좋을 사항이 있다면 적어주세요"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">응답 보내기</button>
+        </form>
+
+        <div class="kakao-section">
+          <div class="kakao-divider">
+            <div class="kdiv-line"></div>
+            <span class="kdiv-text">문의 및 변경</span>
+            <div class="kdiv-line"></div>
+          </div>
+          <p class="kakao-desc">응답 변경이나 문의사항은 아래 카카오톡 채널로 편하게 연락해 주세요</p>
+          <a class="kakao-btn" href="https://open.kakao.com/o/shQ0lSxi" target="_blank" rel="noopener">
+            <svg class="kakao-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.6 5.08 4.04 6.56l-.96 3.56c-.08.3.26.54.52.37L9.76 18.9c.73.12 1.48.18 2.24.18 5.523 0 10-3.477 10-7.8C22 6.477 17.523 3 12 3z"/>
+            </svg>
+            청첩파티 문의
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>유인상 · 이겨레 드림</p>
+    </div>
+
+  </div>
+
+  <script>
+    // 개인화 이름 (URL ?to=이름)
+    const params = new URLSearchParams(location.search);
+    const to = params.get('to');
+    if (to) {
+      const section = document.getElementById('toSection');
+      document.getElementById('toName').textContent = to;
+      section.classList.add('visible');
+      const nameInput = document.getElementById('name');
+      if (nameInput && !nameInput.value) nameInput.value = to;
+    }
+
+    // Google Sheets 제출 — Apps Script 배포 후 아래 URL을 교체하세요
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz5ffiugY87N8Xum6XfhVC1EGp5UuZVnTSB91UN8oBel31Wm8prP5KzRJOVv6GA955p/exec';
+
+    document.querySelector('form[name="rsvp"]').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const btn = this.querySelector('.submit-btn');
+      btn.textContent = '전송 중…';
+      btn.disabled = true;
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new FormData(this),
+      }).finally(() => {
+        window.location.href = 'thanks.html';
+      });
+    });
+  </script>
+</body>
+</html>
