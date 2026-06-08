@@ -87,16 +87,23 @@
     .to-section {
       display: none;
       margin-bottom: 20px;
+      width: 100%;
+      max-width: 420px;
     }
     .to-section.visible { display: block; }
     .to-text {
       font-family: 'Noto Serif KR', serif;
       font-size: 15px;
-      font-style: italic;
+      font-weight: 500;
       letter-spacing: 1.5px;
-      color: var(--white-55);
+      color: var(--white-80);
+      background: rgba(10, 5, 2, 0.55);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 1px;
+      padding: 14px 20px;
+      text-align: center;
     }
-    .to-name { color: var(--white-80); }
+    .to-name { color: var(--white); font-weight: 700; }
 
     /* ── Hero Text ── */
     .hero {
