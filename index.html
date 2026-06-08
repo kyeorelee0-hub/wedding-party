@@ -595,10 +595,12 @@
   </div>
 
   <script>
-    // 개인화 이름 (URL ?to=이름)
+    // 개인화 이름 (URL ?to=인코딩된이름)
     const params = new URLSearchParams(location.search);
-    const to = params.get('to');
-    if (to) {
+    const raw = params.get('to');
+    if (raw) {
+      let to = raw;
+      try { to = decodeURIComponent(escape(atob(raw))); } catch(e) {}
       const section = document.getElementById('toSection');
       document.getElementById('toName').textContent = to;
       section.classList.add('visible');
